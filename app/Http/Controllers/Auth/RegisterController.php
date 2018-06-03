@@ -83,8 +83,10 @@ class RegisterController extends Controller
      public function verifyUser($token){
 
         $verifyUser = VerifyUser::where('token', $token)->first();
+        
         if(isset($verifyUser) ){
             $user = $verifyUser->user;
+            
             if(!$user->verified) {
                 $verifyUser->user->verified = 1;
                 $verifyUser->user->save();
